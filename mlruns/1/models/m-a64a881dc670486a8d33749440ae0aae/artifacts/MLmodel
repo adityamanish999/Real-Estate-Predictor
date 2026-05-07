@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/saake/OneDrive/Desktop/real_estate/mlruns/1/models/m-a64a881dc670486a8d33749440ae0aae/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.12.7
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.12.0
+model_id: m-a64a881dc670486a8d33749440ae0aae
+model_size_bytes: 98872
+model_uuid: m-a64a881dc670486a8d33749440ae0aae
+prompts: null
+run_id: 32fdd312b3f24662b91df07338ccb89c
+utc_time_created: '2026-05-07 05:06:20.074783'
