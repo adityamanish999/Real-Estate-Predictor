@@ -9,10 +9,43 @@ def load_data(file_path):
     df = pd.read_csv(file_path)
     return df
 
+def data_quality_report(df):
+    """Fill missing values and flag (but keep) outliers. Saves a per-column summary."""
+    print("Checking data quality...")
+    num_cols = df.select_dtypes(include=[np.number]).columns.drop('ID', errors='ignore')
+    cat_cols = df.select_dtypes(exclude=[np.number]).columns
+
+    report = pd.DataFrame({'missing': df.isna().sum()})
+
+    # Impute: median for numeric columns, mode for categorical columns
+    for col in num_cols:
+        if df[col].isna().any():
+            df[col] = df[col].fillna(df[col].median())
+    for col in cat_cols:
+        if df[col].isna().any():
+            df[col] = df[col].fillna(df[col].mode()[0])
+
+    # Outliers use the IQR rule. They are reported, not removed, so training data is unchanged.
+    outliers = {}
+    for col in ['Price_in_Lakhs', 'Size_in_SqFt', 'Price_per_SqFt']:
+        q1, q3 = df[col].quantile([0.25, 0.75])
+        iqr = q3 - q1
+        outliers[col] = int(((df[col] < q1 - 1.5 * iqr) | (df[col] > q3 + 1.5 * iqr)).sum())
+    report['iqr_outliers'] = pd.Series(outliers)
+
+    os.makedirs('data', exist_ok=True)
+    report.to_csv('data/data_quality_report.csv', index_label='column')
+    print(f"Missing values: {int(report['missing'].sum())}. IQR outliers: {outliers}")
+    return df
+
+
 def feature_engineering(df):
     print("Feature Engineering...")
     # Drop duplicates
+    n_before = len(df)
     df = df.drop_duplicates()
+    print(f"Removed {n_before - len(df)} duplicate rows.")
+    df = data_quality_report(df)
     
     # 1. Amenity Score: count number of amenities
     df['Amenity_Score'] = df['Amenities'].apply(lambda x: len(str(x).split(',')))

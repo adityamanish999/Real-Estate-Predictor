@@ -1,0 +1,23 @@
+artifact_path: /Users/skoduri/Desktop/GUVI_PROJECT_3/Real-Estate-Predictor/mlruns/2/models/m-ddd518fb4e4a415d9587a4e2560c11e0/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.1
+    skops_trusted_types: null
+mlflow_version: 3.17.0
+model_id: m-ddd518fb4e4a415d9587a4e2560c11e0
+model_size_bytes: 2372875
+model_uuid: m-ddd518fb4e4a415d9587a4e2560c11e0
+prompts: null
+run_id: a86ae3e31f994bbd957fa29c36ed0315
+utc_time_created: '2026-10-10 07:02:30.985807'

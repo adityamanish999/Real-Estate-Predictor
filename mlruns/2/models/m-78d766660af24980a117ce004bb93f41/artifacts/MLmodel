@@ -1,0 +1,22 @@
+artifact_path: /Users/skoduri/Desktop/GUVI_PROJECT_3/Real-Estate-Predictor/mlruns/2/models/m-78d766660af24980a117ce004bb93f41/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.3
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBRegressor
+    model_format: ubj
+    xgb_version: 3.4.1
+mlflow_version: 3.17.0
+model_id: m-78d766660af24980a117ce004bb93f41
+model_size_bytes: 241177
+model_uuid: m-78d766660af24980a117ce004bb93f41
+prompts: null
+run_id: e59e01fc8da849cd84a45e6527e75b98
+utc_time_created: '2026-10-10 07:02:46.628636'

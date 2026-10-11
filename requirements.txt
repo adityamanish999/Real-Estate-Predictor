@@ -2,8 +2,12 @@ pandas
 numpy
 matplotlib
 seaborn
+plotly
 scikit-learn
 xgboost
 streamlit
 mlflow
+joblib
+pillow
+pytest
 jupyter
